@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b1a7434c9214a129d18c2499f684308" Name="Diagram1">
+        <EntityTypeShape EntityType="DashaVKRModel.Book" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DashaVKRModel.LendBook" Width="1.5" PointX="8.25" PointY="4.875" />
+        <EntityTypeShape EntityType="DashaVKRModel.Librarian" Width="1.5" PointX="6" PointY="9" />
+        <EntityTypeShape EntityType="DashaVKRModel.Reader" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="DashaVKRModel.ReaderCard" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="DashaVKRModel.RequestList" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="DashaVKRModel.ReturnBook" Width="1.5" PointX="5.25" PointY="4.875" />
+        <AssociationConnector Association="DashaVKRModel.FK_LendBook_Book" />
+        <AssociationConnector Association="DashaVKRModel.FK_RequestList_Book1" />
+        <AssociationConnector Association="DashaVKRModel.FK_ReturnBook_Book" />
+        <AssociationConnector Association="DashaVKRModel.FK_LendBook_Librarian" />
+        <AssociationConnector Association="DashaVKRModel.FK_LendBook_ReaderCard" />
+        <AssociationConnector Association="DashaVKRModel.FK_ReturnBook_Librarian" />
+        <AssociationConnector Association="DashaVKRModel.FK_ReaderCard_Reader" />
+        <AssociationConnector Association="DashaVKRModel.FK_RequestList_ReaderCard1" />
+        <AssociationConnector Association="DashaVKRModel.FK_ReturnBook_ReaderCard" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

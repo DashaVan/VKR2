@@ -1,0 +1,728 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DashaVKRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="IdBook" />
+          </Key>
+          <Property Name="IdRFIDbook" Type="int" />
+          <Property Name="IdBook" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Autor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Publish" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Pages" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Sum" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LendBook">
+          <Key>
+            <PropertyRef Name="IdLendBook" />
+          </Key>
+          <Property Name="IdLendBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdReaderCard" Type="uniqueidentifier" />
+          <Property Name="IdLibrarian" Type="uniqueidentifier" />
+          <Property Name="IdBook" Type="uniqueidentifier" />
+          <Property Name="IdRFIDbook" Type="int" Nullable="false" />
+          <Property Name="IdReaderCardRFID" Type="int" Nullable="false" />
+          <Property Name="IdLibrarianRFID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="IdLibrarian" />
+          </Key>
+          <Property Name="IdLibrarian" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdLibrarianRFID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reader">
+          <Key>
+            <PropertyRef Name="IdReader" />
+          </Key>
+          <Property Name="IdReader" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReaderCard">
+          <Key>
+            <PropertyRef Name="IdReaderCard" />
+          </Key>
+          <Property Name="IdReaderCardRFID" Type="int" />
+          <Property Name="IdReaderCard" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdReader" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InfoBook" Type="nvarchar" MaxLength="50" />
+          <Property Name="InfoDebt" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestList">
+          <Key>
+            <PropertyRef Name="IdRequestList" />
+          </Key>
+          <Property Name="IdRequestList" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdReaderCardRFID" Type="int" Nullable="false" />
+          <Property Name="IdRFIDbook" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="IdReaderCard" Type="uniqueidentifier" />
+          <Property Name="IdBook" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ReturnBook">
+          <Key>
+            <PropertyRef Name="IdReturnBook" />
+          </Key>
+          <Property Name="IdReturnBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdReaderCard" Type="uniqueidentifier" />
+          <Property Name="IdLibrarian" Type="uniqueidentifier" />
+          <Property Name="IdBook" Type="uniqueidentifier" />
+          <Property Name="IdReaderCardRFID" Type="int" Nullable="false" />
+          <Property Name="IdLibrarianRFID" Type="int" Nullable="false" />
+          <Property Name="IdRFIDbook" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LendBook_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="LendBook" Type="Self.LendBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="IdBook" />
+            </Principal>
+            <Dependent Role="LendBook">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LendBook_Librarian">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="0..1" />
+          <End Role="LendBook" Type="Self.LendBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="IdLibrarian" />
+            </Principal>
+            <Dependent Role="LendBook">
+              <PropertyRef Name="IdLibrarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LendBook_ReaderCard">
+          <End Role="ReaderCard" Type="Self.ReaderCard" Multiplicity="0..1" />
+          <End Role="LendBook" Type="Self.LendBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReaderCard">
+              <PropertyRef Name="IdReaderCard" />
+            </Principal>
+            <Dependent Role="LendBook">
+              <PropertyRef Name="IdReaderCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReaderCard_Reader">
+          <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
+          <End Role="ReaderCard" Type="Self.ReaderCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="IdReader" />
+            </Principal>
+            <Dependent Role="ReaderCard">
+              <PropertyRef Name="IdReader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestList_Book1">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="RequestList" Type="Self.RequestList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="IdBook" />
+            </Principal>
+            <Dependent Role="RequestList">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestList_ReaderCard1">
+          <End Role="ReaderCard" Type="Self.ReaderCard" Multiplicity="0..1" />
+          <End Role="RequestList" Type="Self.RequestList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReaderCard">
+              <PropertyRef Name="IdReaderCard" />
+            </Principal>
+            <Dependent Role="RequestList">
+              <PropertyRef Name="IdReaderCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBook_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="ReturnBook" Type="Self.ReturnBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="IdBook" />
+            </Principal>
+            <Dependent Role="ReturnBook">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBook_Librarian">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="0..1" />
+          <End Role="ReturnBook" Type="Self.ReturnBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="IdLibrarian" />
+            </Principal>
+            <Dependent Role="ReturnBook">
+              <PropertyRef Name="IdLibrarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBook_ReaderCard">
+          <End Role="ReaderCard" Type="Self.ReaderCard" Multiplicity="0..1" />
+          <End Role="ReturnBook" Type="Self.ReturnBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReaderCard">
+              <PropertyRef Name="IdReaderCard" />
+            </Principal>
+            <Dependent Role="ReturnBook">
+              <PropertyRef Name="IdReaderCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DashaVKRModelStoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LendBook" EntityType="Self.LendBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Librarian" EntityType="Self.Librarian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reader" EntityType="Self.Reader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReaderCard" EntityType="Self.ReaderCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestList" EntityType="Self.RequestList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReturnBook" EntityType="Self.ReturnBook" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LendBook_Book" Association="Self.FK_LendBook_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="LendBook" EntitySet="LendBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LendBook_Librarian" Association="Self.FK_LendBook_Librarian">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="LendBook" EntitySet="LendBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LendBook_ReaderCard" Association="Self.FK_LendBook_ReaderCard">
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+            <End Role="LendBook" EntitySet="LendBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReaderCard_Reader" Association="Self.FK_ReaderCard_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestList_Book1" Association="Self.FK_RequestList_Book1">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="RequestList" EntitySet="RequestList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestList_ReaderCard1" Association="Self.FK_RequestList_ReaderCard1">
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+            <End Role="RequestList" EntitySet="RequestList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBook_Book" Association="Self.FK_ReturnBook_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ReturnBook" EntitySet="ReturnBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBook_Librarian" Association="Self.FK_ReturnBook_Librarian">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="ReturnBook" EntitySet="ReturnBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBook_ReaderCard" Association="Self.FK_ReturnBook_ReaderCard">
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+            <End Role="ReturnBook" EntitySet="ReturnBook" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DashaVKRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DashaVKREntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DashaVKRModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DashaVKRModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Book" EntityType="DashaVKRModel.Book" />
+          <EntitySet Name="LendBook" EntityType="DashaVKRModel.LendBook" />
+          <EntitySet Name="Librarian" EntityType="DashaVKRModel.Librarian" />
+          <EntitySet Name="Reader" EntityType="DashaVKRModel.Reader" />
+          <EntitySet Name="ReaderCard" EntityType="DashaVKRModel.ReaderCard" />
+          <EntitySet Name="RequestList" EntityType="DashaVKRModel.RequestList" />
+          <EntitySet Name="ReturnBook" EntityType="DashaVKRModel.ReturnBook" />
+          <AssociationSet Name="FK_LendBook_Book" Association="DashaVKRModel.FK_LendBook_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="LendBook" EntitySet="LendBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestList_Book1" Association="DashaVKRModel.FK_RequestList_Book1">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="RequestList" EntitySet="RequestList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBook_Book" Association="DashaVKRModel.FK_ReturnBook_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ReturnBook" EntitySet="ReturnBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LendBook_Librarian" Association="DashaVKRModel.FK_LendBook_Librarian">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="LendBook" EntitySet="LendBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LendBook_ReaderCard" Association="DashaVKRModel.FK_LendBook_ReaderCard">
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+            <End Role="LendBook" EntitySet="LendBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBook_Librarian" Association="DashaVKRModel.FK_ReturnBook_Librarian">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="ReturnBook" EntitySet="ReturnBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReaderCard_Reader" Association="DashaVKRModel.FK_ReaderCard_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestList_ReaderCard1" Association="DashaVKRModel.FK_RequestList_ReaderCard1">
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+            <End Role="RequestList" EntitySet="RequestList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReturnBook_ReaderCard" Association="DashaVKRModel.FK_ReturnBook_ReaderCard">
+            <End Role="ReaderCard" EntitySet="ReaderCard" />
+            <End Role="ReturnBook" EntitySet="ReturnBook" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="IdBook" />
+          </Key>
+          <Property Name="IdRFIDbook" Type="Int32" />
+          <Property Name="IdBook" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Autor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Publish" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Pages" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sum" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LendBook" Relationship="DashaVKRModel.FK_LendBook_Book" FromRole="Book" ToRole="LendBook" />
+          <NavigationProperty Name="RequestList" Relationship="DashaVKRModel.FK_RequestList_Book1" FromRole="Book" ToRole="RequestList" />
+          <NavigationProperty Name="ReturnBook" Relationship="DashaVKRModel.FK_ReturnBook_Book" FromRole="Book" ToRole="ReturnBook" />
+        </EntityType>
+        <EntityType Name="LendBook">
+          <Key>
+            <PropertyRef Name="IdLendBook" />
+          </Key>
+          <Property Name="IdLendBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdReaderCard" Type="Guid" />
+          <Property Name="IdLibrarian" Type="Guid" />
+          <Property Name="IdBook" Type="Guid" />
+          <Property Name="IdRFIDbook" Type="Int32" Nullable="false" />
+          <Property Name="IdReaderCardRFID" Type="Int32" Nullable="false" />
+          <Property Name="IdLibrarianRFID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Book" Relationship="DashaVKRModel.FK_LendBook_Book" FromRole="LendBook" ToRole="Book" />
+          <NavigationProperty Name="Librarian" Relationship="DashaVKRModel.FK_LendBook_Librarian" FromRole="LendBook" ToRole="Librarian" />
+          <NavigationProperty Name="ReaderCard" Relationship="DashaVKRModel.FK_LendBook_ReaderCard" FromRole="LendBook" ToRole="ReaderCard" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="IdLibrarian" />
+          </Key>
+          <Property Name="IdLibrarian" Type="Guid" Nullable="false" />
+          <Property Name="IdLibrarianRFID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LendBook" Relationship="DashaVKRModel.FK_LendBook_Librarian" FromRole="Librarian" ToRole="LendBook" />
+          <NavigationProperty Name="ReturnBook" Relationship="DashaVKRModel.FK_ReturnBook_Librarian" FromRole="Librarian" ToRole="ReturnBook" />
+        </EntityType>
+        <EntityType Name="Reader">
+          <Key>
+            <PropertyRef Name="IdReader" />
+          </Key>
+          <Property Name="IdReader" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReaderCard" Relationship="DashaVKRModel.FK_ReaderCard_Reader" FromRole="Reader" ToRole="ReaderCard" />
+        </EntityType>
+        <EntityType Name="ReaderCard">
+          <Key>
+            <PropertyRef Name="IdReaderCard" />
+          </Key>
+          <Property Name="IdReaderCardRFID" Type="Int32" />
+          <Property Name="IdReaderCard" Type="Guid" Nullable="false" />
+          <Property Name="IdReader" Type="Guid" Nullable="false" />
+          <Property Name="InfoBook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InfoDebt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LendBook" Relationship="DashaVKRModel.FK_LendBook_ReaderCard" FromRole="ReaderCard" ToRole="LendBook" />
+          <NavigationProperty Name="Reader" Relationship="DashaVKRModel.FK_ReaderCard_Reader" FromRole="ReaderCard" ToRole="Reader" />
+          <NavigationProperty Name="RequestList" Relationship="DashaVKRModel.FK_RequestList_ReaderCard1" FromRole="ReaderCard" ToRole="RequestList" />
+          <NavigationProperty Name="ReturnBook" Relationship="DashaVKRModel.FK_ReturnBook_ReaderCard" FromRole="ReaderCard" ToRole="ReturnBook" />
+        </EntityType>
+        <EntityType Name="RequestList">
+          <Key>
+            <PropertyRef Name="IdRequestList" />
+          </Key>
+          <Property Name="IdRequestList" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdReaderCardRFID" Type="Int32" Nullable="false" />
+          <Property Name="IdRFIDbook" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdReaderCard" Type="Guid" />
+          <Property Name="IdBook" Type="Guid" />
+          <NavigationProperty Name="Book" Relationship="DashaVKRModel.FK_RequestList_Book1" FromRole="RequestList" ToRole="Book" />
+          <NavigationProperty Name="ReaderCard" Relationship="DashaVKRModel.FK_RequestList_ReaderCard1" FromRole="RequestList" ToRole="ReaderCard" />
+        </EntityType>
+        <EntityType Name="ReturnBook">
+          <Key>
+            <PropertyRef Name="IdReturnBook" />
+          </Key>
+          <Property Name="IdReturnBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdReaderCard" Type="Guid" />
+          <Property Name="IdLibrarian" Type="Guid" />
+          <Property Name="IdBook" Type="Guid" />
+          <Property Name="IdReaderCardRFID" Type="Int32" Nullable="false" />
+          <Property Name="IdLibrarianRFID" Type="Int32" Nullable="false" />
+          <Property Name="IdRFIDbook" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Book" Relationship="DashaVKRModel.FK_ReturnBook_Book" FromRole="ReturnBook" ToRole="Book" />
+          <NavigationProperty Name="Librarian" Relationship="DashaVKRModel.FK_ReturnBook_Librarian" FromRole="ReturnBook" ToRole="Librarian" />
+          <NavigationProperty Name="ReaderCard" Relationship="DashaVKRModel.FK_ReturnBook_ReaderCard" FromRole="ReturnBook" ToRole="ReaderCard" />
+        </EntityType>
+        <Association Name="FK_LendBook_Book">
+          <End Type="DashaVKRModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.LendBook" Role="LendBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="IdBook" />
+            </Principal>
+            <Dependent Role="LendBook">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestList_Book1">
+          <End Type="DashaVKRModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.RequestList" Role="RequestList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="IdBook" />
+            </Principal>
+            <Dependent Role="RequestList">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBook_Book">
+          <End Type="DashaVKRModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.ReturnBook" Role="ReturnBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="IdBook" />
+            </Principal>
+            <Dependent Role="ReturnBook">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LendBook_Librarian">
+          <End Type="DashaVKRModel.Librarian" Role="Librarian" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.LendBook" Role="LendBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="IdLibrarian" />
+            </Principal>
+            <Dependent Role="LendBook">
+              <PropertyRef Name="IdLibrarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LendBook_ReaderCard">
+          <End Type="DashaVKRModel.ReaderCard" Role="ReaderCard" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.LendBook" Role="LendBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReaderCard">
+              <PropertyRef Name="IdReaderCard" />
+            </Principal>
+            <Dependent Role="LendBook">
+              <PropertyRef Name="IdReaderCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBook_Librarian">
+          <End Type="DashaVKRModel.Librarian" Role="Librarian" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.ReturnBook" Role="ReturnBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="IdLibrarian" />
+            </Principal>
+            <Dependent Role="ReturnBook">
+              <PropertyRef Name="IdLibrarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReaderCard_Reader">
+          <End Type="DashaVKRModel.Reader" Role="Reader" Multiplicity="1" />
+          <End Type="DashaVKRModel.ReaderCard" Role="ReaderCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="IdReader" />
+            </Principal>
+            <Dependent Role="ReaderCard">
+              <PropertyRef Name="IdReader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestList_ReaderCard1">
+          <End Type="DashaVKRModel.ReaderCard" Role="ReaderCard" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.RequestList" Role="RequestList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReaderCard">
+              <PropertyRef Name="IdReaderCard" />
+            </Principal>
+            <Dependent Role="RequestList">
+              <PropertyRef Name="IdReaderCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReturnBook_ReaderCard">
+          <End Type="DashaVKRModel.ReaderCard" Role="ReaderCard" Multiplicity="0..1" />
+          <End Type="DashaVKRModel.ReturnBook" Role="ReturnBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReaderCard">
+              <PropertyRef Name="IdReaderCard" />
+            </Principal>
+            <Dependent Role="ReturnBook">
+              <PropertyRef Name="IdReaderCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DashaVKRModelStoreContainer" CdmEntityContainer="DashaVKREntities">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DashaVKRModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DashaVKRModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DashaVKRModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DashaVKRModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DashaVKRModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DashaVKRModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DashaVKRModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DashaVKRModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DashaVKRModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="DashaVKRModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdRFIDbook" ColumnName="IdRFIDbook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LendBook">
+            <EntityTypeMapping TypeName="DashaVKRModel.LendBook">
+              <MappingFragment StoreEntitySet="LendBook">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdLibrarianRFID" ColumnName="IdLibrarianRFID" />
+                <ScalarProperty Name="IdReaderCardRFID" ColumnName="IdReaderCardRFID" />
+                <ScalarProperty Name="IdRFIDbook" ColumnName="IdRFIDbook" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdLibrarian" ColumnName="IdLibrarian" />
+                <ScalarProperty Name="IdReaderCard" ColumnName="IdReaderCard" />
+                <ScalarProperty Name="IdLendBook" ColumnName="IdLendBook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Librarian">
+            <EntityTypeMapping TypeName="DashaVKRModel.Librarian">
+              <MappingFragment StoreEntitySet="Librarian">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdLibrarianRFID" ColumnName="IdLibrarianRFID" />
+                <ScalarProperty Name="IdLibrarian" ColumnName="IdLibrarian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reader">
+            <EntityTypeMapping TypeName="DashaVKRModel.Reader">
+              <MappingFragment StoreEntitySet="Reader">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdReader" ColumnName="IdReader" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReaderCard">
+            <EntityTypeMapping TypeName="DashaVKRModel.ReaderCard">
+              <MappingFragment StoreEntitySet="ReaderCard">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="InfoDebt" ColumnName="InfoDebt" />
+                <ScalarProperty Name="InfoBook" ColumnName="InfoBook" />
+                <ScalarProperty Name="IdReader" ColumnName="IdReader" />
+                <ScalarProperty Name="IdReaderCard" ColumnName="IdReaderCard" />
+                <ScalarProperty Name="IdReaderCardRFID" ColumnName="IdReaderCardRFID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestList">
+            <EntityTypeMapping TypeName="DashaVKRModel.RequestList">
+              <MappingFragment StoreEntitySet="RequestList">
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdReaderCard" ColumnName="IdReaderCard" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdRFIDbook" ColumnName="IdRFIDbook" />
+                <ScalarProperty Name="IdReaderCardRFID" ColumnName="IdReaderCardRFID" />
+                <ScalarProperty Name="IdRequestList" ColumnName="IdRequestList" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReturnBook">
+            <EntityTypeMapping TypeName="DashaVKRModel.ReturnBook">
+              <MappingFragment StoreEntitySet="ReturnBook">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdRFIDbook" ColumnName="IdRFIDbook" />
+                <ScalarProperty Name="IdLibrarianRFID" ColumnName="IdLibrarianRFID" />
+                <ScalarProperty Name="IdReaderCardRFID" ColumnName="IdReaderCardRFID" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdLibrarian" ColumnName="IdLibrarian" />
+                <ScalarProperty Name="IdReaderCard" ColumnName="IdReaderCard" />
+                <ScalarProperty Name="IdReturnBook" ColumnName="IdReturnBook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

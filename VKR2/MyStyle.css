@@ -1,0 +1,43 @@
+﻿
+body {
+    background-image: url(paper_texture5932.jpg);
+    background-color: #ffe3af;
+}
+
+input[type=submit] {
+    background-color: #ffe6c9;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 6px;
+    width: 250px;
+    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 5px;
+    top: 1px;
+}
+
+input[type=text] {
+    background-color: #fff3e2;
+    border: 1px solid #8c8c8c;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+input[type=password] {
+    background-color: #fff3e2;
+    border: 1px solid #8c8c8c;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.centered {
+    text-align: center;
+}
+

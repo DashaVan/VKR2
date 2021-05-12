@@ -36,17 +36,17 @@ namespace VKR2
            
         }
 
-
-        protected void BtnInfoLendBook_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("FormLendBook.aspx");
-           
-        }
-
         protected void BtnReturnBook_Click(object sender, EventArgs e)
         {
             Response.Redirect("FormReturnBook.aspx");
             
+        }
+
+        protected void BtnInfoLendBook_Click(object sender, EventArgs e)
+        {
+            //архив
+            Response.Redirect("Archive.aspx");
+
         }
     }
 }

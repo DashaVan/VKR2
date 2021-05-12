@@ -15,15 +15,63 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div class="centered">
             <br />
             <br />
             <asp:Label ID="Label3" runat="server" Font-Size="20px" Text="Поиск данных о читателе"></asp:Label>
             <br />
             <br />
+         </div>
+         <div>
             <asp:Label ID="Label2" runat="server" Text="Номер читательского билета:" Font-Size="20px"></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
             <br />
+            <br />
+            <asp:Table ID="Table_reader" runat="server" Width="700px" BackColor="#DEBA84" CellPadding="3" HorizontalAlign="Center" Visible="false" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellSpacing="2">
+                <asp:TableRow BackColor="#a55129" ForeColor="White" Font-Bold="True">
+                            <asp:TableCell>
+                                <asp:Label ID="Label9" runat="server" Text="Id читателя"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label1" runat="server" Text="Имя"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label5" runat="server" Text="Фамилия" ></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label6" runat="server" Text="Информация о книгах" ></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label7" runat="server" Text="Задолженность" ></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label8" runat="server" Text="Дата регистрации" ></asp:Label>
+                            </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow BackColor="#fff7e8" ForeColor="#a65024">
+                             <asp:TableCell>
+                                 <asp:Label ID="Label_id" runat="server" Text="name"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                 <asp:Label ID="Label_name" runat="server" Text="name"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label_surname" runat="server" Text="surname"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label_infoBook" runat="server" Text="infoBook"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label_infoDebt" runat="server" Text="infoDebt"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label_date" runat="server" Text="date"></asp:Label>
+                            </asp:TableCell>
+                </asp:TableRow>
+
+
+            </asp:Table>
+
             <br />
             <asp:Label ID="Label4" runat="server" Text="Читательские билеты: " Font-Size="20px"></asp:Label>
             <br />
@@ -31,8 +79,6 @@
                 <Columns>
                     <asp:BoundField DataField="IdReaderCardRFID" HeaderText="IdReaderCardRFID" ReadOnly="True" SortExpression="IdReaderCardRFID" />
                     <asp:BoundField DataField="IdReader" HeaderText="IdReader" ReadOnly="True" SortExpression="IdReader" />
-                    <asp:BoundField DataField="InfoBook" HeaderText="InfoBook" ReadOnly="True" SortExpression="InfoBook" />
-                    <asp:BoundField DataField="InfoDebt" HeaderText="InfoDebt" ReadOnly="True" SortExpression="InfoDebt" />
                     <asp:BoundField DataField="CreatedDate" HeaderText="CreatedDate" ReadOnly="True" SortExpression="CreatedDate" />
                 </Columns>
                 <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
@@ -45,7 +91,7 @@
                 <SortedDescendingCellStyle BackColor="#F1E5CE" />
                 <SortedDescendingHeaderStyle BackColor="#93451F" />
             </asp:GridView>
-            <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=DashaVKREntities" DefaultContainerName="DashaVKREntities" EnableFlattening="False" EntitySetName="ReaderCard" Select="it.[IdReaderCardRFID], it.[IdReader], it.[InfoBook], it.[InfoDebt], it.[CreatedDate]">
+            <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=DashaVKREntities" DefaultContainerName="DashaVKREntities" EnableFlattening="False" EntitySetName="ReaderCard" Select="it.[IdReaderCardRFID], it.[IdReader], it.[CreatedDate]">
             </asp:EntityDataSource>
         </div>
     </form>

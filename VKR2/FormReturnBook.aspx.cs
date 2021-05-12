@@ -9,13 +9,13 @@ namespace VKR2
 {
     public partial class FormReturnBook : System.Web.UI.Page
     {
+        DashaVKREntities ent = new DashaVKREntities();
         protected void Page_Load(object sender, EventArgs e)
         {          
         }
 
         protected void ButtonAdd_Click(object sender, EventArgs e)
         {
-            DashaVKREntities ent = new DashaVKREntities();
 
             if (!string.IsNullOrEmpty(TbTitle.Text) && !string.IsNullOrWhiteSpace(TbTitle.Text) &&
                 !string.IsNullOrEmpty(TbAutor.Text) && !string.IsNullOrWhiteSpace(TbAutor.Text) &&
@@ -59,6 +59,24 @@ namespace VKR2
             }
         }
 
-   
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ReturnBook book = new ReturnBook();
+            int rfid = Convert.ToInt32(TextBoxRFID.Text);
+            book.IdRFIDbook = rfid;
+            int reader = Convert.ToInt32(TextBoxReader.Text);
+            book.IdReaderCardRFID = reader;
+            int librarian = Convert.ToInt32(TextBoxLibrarian.Text);
+            book.Date = System.DateTime.Now.Date;
+
+            var sum = ent.Book
+                .Where(c => c.IdRFIDbook == rfid)
+                .FirstOrDefault();
+            sum.Sum = true;
+
+            ent.ReturnBook.Add(book);
+            ent.SaveChanges();
+
+        }
     }
 }

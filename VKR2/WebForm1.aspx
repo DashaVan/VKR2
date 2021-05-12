@@ -22,7 +22,7 @@
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Имя*:" Font-Size="20px"></asp:Label>
-        <asp:TextBox ID="TextName" runat="server" AutoComplete="off"></asp:TextBox>
+        <asp:TextBox ID="TextName" runat="server" AutoComplete="off" OnTextChanged="TextName_TextChanged"></asp:TextBox>
         <br />
         <asp:Label ID="Label2" runat="server" Text="Фамилия*:" Font-Size="20px"></asp:Label>
         <asp:TextBox ID="TextSurname" runat="server" AutoComplete="off"></asp:TextBox>

@@ -13,95 +13,84 @@ namespace VKR2
 {
     public partial class Reader_RequestList : System.Web.UI.Page
     {
+        DashaVKREntities ent = new DashaVKREntities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-           //DashaVKREntities ent = new DashaVKREntities();
-           //GridView2.DataSource = (from book in ent.Book select book).ToList();
-        }
+            if (LabelError.Visible == true)
+                LabelError.Visible = false;
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void BtnOrder_Click(object sender, EventArgs e)
-        {
-            if (Label3.Visible)
-                Label3.Visible = false;
-            if (!string.IsNullOrEmpty(TextBox1.Text) && !string.IsNullOrWhiteSpace(TextBox1.Text) &&
-                !string.IsNullOrEmpty(TextBox2.Text) && !string.IsNullOrWhiteSpace(TextBox2.Text))
-            {
-                DashaVKREntities ent = new DashaVKREntities();
-                RequestList new_request = new RequestList();
-                int i;
-                if (!int.TryParse(TextBox1.Text, out i) || !int.TryParse(TextBox2.Text, out i))
-                {
-                    LabelError.Visible = true;
-                    LabelError.Text = "введите IdRFID читательского билета и книги";
-                    return;
-                }
-                else
-                {
-                    int readerCard = Convert.ToInt32(TextBox1.Text);
-                    new_request.IdReaderCardRFID = readerCard;
-                    int book = Convert.ToInt32(TextBox2.Text);
-                    new_request.IdRFIDbook = book;
-                    new_request.Date = System.DateTime.Now.Date;
-                    
-                    ent.RequestList.Add(new_request);
-                    ent.SaveChanges();
-                }
-               
-            }
-            else
-            {
-                Label3.Visible = true;
-                Label3.Text = "Поля должны быть заполнены!";
-            }    
+            GridView3.DataSource = (from book in ent.Book select book).ToList();
+            GridView3.DataBind();
         }
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-            //DashaVKREntities ent = new DashaVKREntities();
-            if (LabelError.Visible)
-                LabelError.Visible = false;
-            
-            if (!string.IsNullOrEmpty(TextBoxName.Text) && !string.IsNullOrWhiteSpace(TextBoxName.Text) ||
-                !string.IsNullOrEmpty(TextBoxAutor.Text) && !string.IsNullOrWhiteSpace(TextBoxAutor.Text) ||
-                    !string.IsNullOrEmpty(TextBoxId.Text) && !string.IsNullOrWhiteSpace(TextBoxId.Text))
-            {  
-                string title_book = TextBoxName.Text;
-                string autor_book = TextBoxAutor.Text;
-                if (Class1.searchBookTitle(title_book) == true)
-                {
-        
-                    //TODO
+            if(!string.IsNullOrEmpty(TextBoxName.Text) && !string.IsNullOrWhiteSpace(TextBoxName.Text))
+            {
+                string title = TextBoxName.Text.Trim();
 
-                    LabelError.Visible = true;
-                    LabelError.Text = "Книга найдена!";
-                }
-                else
-                {
-                    LabelError.Visible = true;
-                    LabelError.Text = "Книга не найдена!";
-                }   
-
-                if (Class1.searchBookAutor(autor_book) == true)
-                {
-                    LabelError.Visible = true;
-                    LabelError.Text = "Книга найдена!";
-                }
-                else
-                {
-                    LabelError.Visible = true;
-                    LabelError.Text = "Книга не найдена!";
-                }
+                GridView3.DataSource = (from c in ent.Book
+                                        where c.Title.Contains(title)
+                                        select c).ToList();
+                GridView3.DataBind();
             }
             else
             {
-                LabelError.Visible = true;
-                LabelError.Text = "Заполните хотя бы одно поле для поиска!";
+                if (!string.IsNullOrEmpty(TextBoxAutor.Text) && !string.IsNullOrWhiteSpace(TextBoxAutor.Text))
+                {
+                    string autor = TextBoxAutor.Text.Trim();
+
+                    GridView3.DataSource = (from c in ent.Book
+                                            where c.Autor.Contains(autor)
+                                            select c).ToList();
+                    GridView3.DataBind();
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(TextBoxId.Text) && !string.IsNullOrWhiteSpace(TextBoxId.Text))
+                    {
+                        int bookId = Convert.ToInt32(TextBoxAutor.Text.Trim());
+
+                        GridView3.DataSource = (from c in ent.Book
+                                                where ((c.IdRFIDbook == bookId))
+                                                select c).ToList();
+                        GridView3.DataBind();
+                    }
+                    else
+                    {
+                        LabelError.Visible = true;
+                        LabelError.Text = "Книга не найдена";
+                    }
+                }
+            }   
+        }
+   
+        protected void TextBoxName_TextChanged(object sender, EventArgs e)
+        {
+            /*string title = TextBoxName.Text.Trim();
+
+            GridView3.DataSource = (from c in ent.Book
+                                    where c.Title.Contains(title)
+                                    select c).ToList();
+            GridView3.DataBind();*/
+        }
+
+        protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow row = GridView3.SelectedRow;
+
+            if (e.CommandName == "Select")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                int bigStore = Convert.ToInt32(GridView3.Rows[rowIndex].Cells[1].Text);
+                Response.Redirect("Reader_orderBook.aspx?ID="+bigStore);  
             }
+        }
+
+        protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

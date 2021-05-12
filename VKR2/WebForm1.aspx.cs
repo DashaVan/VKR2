@@ -36,8 +36,8 @@ namespace VKR2
                     Reader new_user = new Reader();
                     new_user.IdReader = System.Guid.NewGuid();
                     new_user.Name = TextName.Text.Trim();
-                    new_user.Patronymic = TextSurname.Text.Trim();
-                    new_user.Surname = TextPatronymic.Text.Trim();
+                    new_user.Surname = TextSurname.Text.Trim();
+                    new_user.Patronymic = TextPatronymic.Text.Trim();
                     new_user.RegistrationDate = System.DateTime.Now.Date;
                     new_user.Login = TBLogin.Text.Trim();
                     new_user.Password = TBPassword.Text.Trim();
@@ -59,8 +59,8 @@ namespace VKR2
                     Librarian new_librarian = new Librarian();
                     new_librarian.IdLibrarian = System.Guid.NewGuid();
                     new_librarian.Name = TextName.Text.Trim();
-                    new_librarian.Patronymic = TextSurname.Text.Trim();
-                    new_librarian.Surname = TextPatronymic.Text.Trim();
+                    new_librarian.Surname = TextSurname.Text.Trim();
+                    new_librarian.Patronymic = TextPatronymic.Text.Trim();
                     new_librarian.Login = TBLogin.Text.Trim();
                     new_librarian.Password = TBPassword.Text.Trim();
                     new_librarian.RegistrationDate = System.DateTime.Now.Date;
@@ -89,6 +89,11 @@ namespace VKR2
 
             allNumbers.Add(newNumber);
             return newNumber;
+        }
+
+        protected void TextName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace VKR2 {
     
     
-    public partial class WebFormEntry {
+    public partial class Archive1 {
         
         /// <summary>
         /// form1 control.
@@ -22,75 +22,93 @@ namespace VKR2 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label2 control.
+        /// BtnLend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Button BtnLend;
         
         /// <summary>
-        /// TextBoxLogin control.
+        /// BtnReturn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxLogin;
+        protected global::System.Web.UI.WebControls.Button BtnReturn;
         
         /// <summary>
-        /// Label3 control.
+        /// BtnFund control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Button BtnFund;
         
         /// <summary>
-        /// Password1 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password1;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// RadioButtonList1 control.
+        /// GridViewLend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.GridView GridViewLend;
         
         /// <summary>
-        /// LabelError control.
+        /// EntityDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelError;
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource1;
         
         /// <summary>
-        /// Button1 control.
+        /// GridViewReturn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.GridView GridViewReturn;
         
         /// <summary>
-        /// Button2 control.
+        /// EntityDataSource2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource2;
+        
+        /// <summary>
+        /// GridViewBook control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewBook;
+        
+        /// <summary>
+        /// EntityDataSource3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource3;
     }
 }

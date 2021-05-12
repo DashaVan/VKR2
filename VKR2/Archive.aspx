@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FormLendBook.aspx.cs" Inherits="VKR2.FormLendBook" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Archive.aspx.cs" Inherits="VKR2.Archive1" %>
 
 <!DOCTYPE html>
 
@@ -9,9 +9,8 @@
     <style>
         form {
             margin: 0 auto;
-            width: 800px;
+            width: 500px;
         }
-        
     </style>
 </head>
 <body>
@@ -23,6 +22,8 @@
             <asp:Button ID="BtnReturn" runat="server" OnClick="BtnReturn_Click" Text="Поступившие книги" />
             <asp:Button ID="BtnFund" runat="server" OnClick="BtnFund_Click" Text="Фонд книг" />
             <br />
+            <br />
+            <asp:Label ID="Label1" runat="server" Font-Size="20px" Text="Label" Visible="False"></asp:Label>
             <br />
             <asp:GridView ID="GridViewLend" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataSourceID="EntityDataSource1" AllowSorting="True" Visible="False">
                 <Columns>

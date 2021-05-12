@@ -122,6 +122,7 @@
     <Content Include="App_Data\DatabaseLibrary_log.ldf">
       <DependentUpon>DatabaseLibrary.mdf</DependentUpon>
     </Content>
+    <Content Include="Archive.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -132,7 +133,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="FormFund.aspx" />
-    <Content Include="FormLendBook.aspx" />
     <Content Include="FormReaderData.aspx" />
     <Content Include="FormReturnBook.aspx" />
     <Content Include="Global.asax" />
@@ -144,6 +144,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="LendBook.aspx" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -157,6 +158,7 @@
     </Content>
     <Content Include="MyStyle.css" />
     <Content Include="paper_texture5932.jpg" />
+    <Content Include="Reader_orderBook.aspx" />
     <Content Include="Reader_RequestList.aspx" />
     <Content Include="styles.css" />
     <Content Include="table_cell_styles.css" />
@@ -230,6 +232,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Archive.aspx.cs">
+      <DependentUpon>Archive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Archive.aspx.designer.cs">
+      <DependentUpon>Archive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Book.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -260,13 +269,6 @@
     <Compile Include="FormFund.aspx.designer.cs">
       <DependentUpon>FormFund.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FormLendBook.aspx.cs">
-      <DependentUpon>FormLendBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormLendBook.aspx.designer.cs">
-      <DependentUpon>FormLendBook.aspx</DependentUpon>
-    </Compile>
     <Compile Include="FormReaderData.aspx.cs">
       <DependentUpon>FormReaderData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -283,6 +285,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LendBook.aspx.cs">
+      <DependentUpon>LendBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LendBook.aspx.designer.cs">
+      <DependentUpon>LendBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="LendBook.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -311,6 +320,13 @@
     </Compile>
     <Compile Include="ReaderCard.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reader_orderBook.aspx.cs">
+      <DependentUpon>Reader_orderBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reader_orderBook.aspx.designer.cs">
+      <DependentUpon>Reader_orderBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reader_RequestList.aspx.cs">
       <DependentUpon>Reader_RequestList.aspx</DependentUpon>

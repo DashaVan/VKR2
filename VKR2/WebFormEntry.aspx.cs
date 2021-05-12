@@ -60,6 +60,9 @@ namespace VKR2
             }
         }
 
-       
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebForm1.aspx");
+        }
     }   
 }

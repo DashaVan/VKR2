@@ -10,7 +10,7 @@
 namespace VKR2 {
     
     
-    public partial class FormLendBook {
+    public partial class LendBook1 {
         
         /// <summary>
         /// form1 control.
@@ -22,84 +22,66 @@ namespace VKR2 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// BtnLend control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnLend;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// BtnReturn control.
+        /// TextBox_readerCardRfid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnReturn;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_readerCardRfid;
         
         /// <summary>
-        /// BtnFund control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnFund;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// GridViewLend control.
+        /// TextBox_idBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewLend;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_idBook;
         
         /// <summary>
-        /// EntityDataSource1 control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource1;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// GridViewReturn control.
+        /// TextBox_librarian control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewReturn;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_librarian;
         
         /// <summary>
-        /// EntityDataSource2 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource2;
-        
-        /// <summary>
-        /// GridViewBook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewBook;
-        
-        /// <summary>
-        /// EntityDataSource3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource3;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

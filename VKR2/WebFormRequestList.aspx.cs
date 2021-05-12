@@ -11,14 +11,12 @@ namespace VKR2
 {
     public partial class WebFormRequestList : System.Web.UI.Page
     {
-        
+        DashaVKREntities ent = new DashaVKREntities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-        
-       
-            
+             
         }
-
        
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,38 +24,61 @@ namespace VKR2
 
         }
 
-       /* private void LoadData()
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-
-            SqlConnection myConnection = new SqlConnection(@"Data Source=LAPTOP-28FUF4AQ;
-Initial Catalog=DBLibrary;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
-
-            myConnection.Open();
-
-            string query = "SELECT * FROM RequestList ORDER BY IdRequestList";
-
-            SqlCommand command = new SqlCommand(query, myConnection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            List<string[]> data = new List<string[]>();
-
-            while (reader.Read())
+            if (TextBox1.Text.Length == 10)
             {
-                data.Add(new string[3]);
+                Int32 gg = Convert.ToInt32(TextBox1.Text);
 
-                data[data.Count - 1][0] = reader[0].ToString();
-                data[data.Count - 1][1] = reader[1].ToString();
-                data[data.Count - 1][2] = reader[2].ToString();
+                string name = (from u in ent.ReaderCard
+                              where u.IdReaderCardRFID == gg
+                              select u).First().Reader.Name.ToString();
+               
+                Label_name.Text = name;
+
+                string surname = (from u in ent.ReaderCard
+                               where u.IdReaderCardRFID == gg
+                               select u).First().Reader.Surname.ToString();
+                Label_surname.Text = surname;
+
+                string infoBook = (from u in ent.ReaderCard
+                                  where u.IdReaderCardRFID == gg
+                                  select u).First().InfoBook.ToString();
+                Label_infoBook.Text = infoBook;
+
+                string infoDebt = (from u in ent.ReaderCard
+                                   where u.IdReaderCardRFID == gg
+                                   select u).First().InfoDebt.ToString();
+                Label_infoDebt.Text = infoDebt;
+
+                string date = (from u in ent.ReaderCard
+                                   where u.IdReaderCardRFID == gg
+                                   select u).First().CreatedDate.ToString();
+                Label_date.Text = date;
+
+                supertable.Visible = true;
             }
+        }
 
-            reader.Close();
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow row = GridView1.SelectedRow;
+            //в LendBook
+            if (e.CommandName == "Select")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                int reader_card = Convert.ToInt32(GridView1.Rows[rowIndex].Cells[2].Text);
+                int id_book = Convert.ToInt32(GridView1.Rows[rowIndex].Cells[3].Text);
+                Response.Redirect("LendBook?ID=" + reader_card + ' ' + id_book);
 
-            myConnection.Close();
+                //удалить из БД, таблица RequestList
+                RequestList request = ent.RequestList
+                .Where(r => r.IdReaderCardRFID == reader_card)
+                .FirstOrDefault();
 
-           // foreach (string[] s in data)
-                //GridView1.Rows.Add(s);
-        }*/
+                ent.RequestList.Remove(request);
+                ent.SaveChanges();
+            }
+        }
     }
 }

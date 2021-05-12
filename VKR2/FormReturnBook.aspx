@@ -67,10 +67,26 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label8" runat="server" Text="IdRFID:" Font-Size="20px"></asp:Label>
+                        <asp:Label ID="Label8" runat="server" Text="IdRFIDbook:" Font-Size="20px"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
                         <asp:TextBox ID="TextBoxRFID" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="Label7" runat="server" Text="IdRFIDLibrarian:" Font-Size="20px"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="TextBoxLibrarian" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="Label9" runat="server" Text="IdRFIDReader:" Font-Size="20px"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="TextBoxReader" runat="server"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table> 
@@ -78,7 +94,7 @@
             <asp:Button ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Добавить книгу" />
             <br /> 
             
-            <asp:Button ID="Button1" runat="server" Text="Вернуть книгу" Margin-top="10px"/>
+            <asp:Button ID="Button1" runat="server" Text="Вернуть книгу" Margin-top="10px" OnClick="Button1_Click"/>
             <br /> 
         </div>
         <p class="centered">

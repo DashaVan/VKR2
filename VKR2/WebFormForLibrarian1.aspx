@@ -9,7 +9,7 @@
     <style>
         form {
       margin: 0 auto;
-      width: 400px;
+      width: 500px;
        }
         input[type=submit] {
             width: 100%;
@@ -31,7 +31,7 @@
                 Одобрение или отказ от выдачи книги читателю.</p>
             <br />
             <br />
-            <asp:Button ID="BtnInfoReader" runat="server" OnClick="BtnInfoReader_Click" Text="Карта поиска данных о читателе" />
+            <asp:Button ID="BtnInfoReader" runat="server" OnClick="BtnInfoReader_Click" Text="Выдать книгу/Поиск данных о читателе" />
             <p>Фонд данных о читателях. <br /> Поиск информации о читателе.</p> 
             <br />
             <br />

@@ -16,10 +16,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="centered">
-            <br />
-            <br />
-            <asp:Label ID="Label1" runat="server" Text="Составить запрос на книгу" Font-Size="20px"></asp:Label>
-            <br />
+            <br /> 
+            <h2>Составить запрос на книгу</h2>
+            
         </div>
         <div>
             <asp:Table ID="Table1" runat="server" Width="600px" CellPadding="5" HorizontalAlign="Center">

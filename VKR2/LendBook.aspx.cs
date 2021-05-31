@@ -37,11 +37,17 @@ namespace VKR2
             book.IdLibrarianRFID = librarian;
             book.Date = System.DateTime.Now.Date;
 
+            // Внести изменения в фонде книг
             var sum = ent.Book
                 .Where(c => c.IdRFIDbook == idBook)
                 .FirstOrDefault();
-            // Внести изменения
             sum.Sum = false;
+
+            //Добавить информацию о выданной книге в читательский билет
+            var infoBook = ent.ReaderCard
+                .Where(d => d.IdReaderCardRFID == readerCard)
+                .FirstOrDefault();
+            infoBook.InfoBook = "книга: {idBook}";
   
             ent.LendBook.Add(book);
             ent.SaveChanges();

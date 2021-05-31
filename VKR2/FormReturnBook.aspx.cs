@@ -49,8 +49,6 @@ namespace VKR2
                     new_book.Sum = true;
                     ent.Book.Add(new_book);
                     ent.SaveChanges();
-                //Response.Redirect("Reader_RequestList.aspx");
-
             }
             else
             {
@@ -76,7 +74,6 @@ namespace VKR2
 
             ent.ReturnBook.Add(book);
             ent.SaveChanges();
-
         }
     }
 }

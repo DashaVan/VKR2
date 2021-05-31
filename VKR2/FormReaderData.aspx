@@ -16,17 +16,19 @@
 <body>
     <form id="form1" runat="server">
         <div class="centered">
-            <br />
-            <br />
-            <asp:Label ID="Label3" runat="server" Font-Size="20px" Text="Поиск данных о читателе"></asp:Label>
-            <br />
-            <br />
+            <br /> 
+            <h2>Поиск данных о читателе</h2>
+            
          </div>
          <div>
             <asp:Label ID="Label2" runat="server" Text="Номер читательского билета:" Font-Size="20px"></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+             <br />
+             <asp:Button ID="Button2" runat="server" Text="Найти информацию" OnClick="Button2_Click" />
             <br />
+             <asp:Button ID="Button1" runat="server" Text="Выдать книгу" OnClick="Button1_Click" />
             <br />
+             <br />
             <asp:Table ID="Table_reader" runat="server" Width="700px" BackColor="#DEBA84" CellPadding="3" HorizontalAlign="Center" Visible="false" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellSpacing="2">
                 <asp:TableRow BackColor="#a55129" ForeColor="White" Font-Bold="True">
                             <asp:TableCell>
@@ -75,7 +77,7 @@
             <br />
             <asp:Label ID="Label4" runat="server" Text="Читательские билеты: " Font-Size="20px"></asp:Label>
             <br />
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataSourceID="EntityDataSource1">
+            <asp:GridView ID="GridView1" runat="server" Width="700px" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataSourceID="EntityDataSource1">
                 <Columns>
                     <asp:BoundField DataField="IdReaderCardRFID" HeaderText="IdReaderCardRFID" ReadOnly="True" SortExpression="IdReaderCardRFID" />
                     <asp:BoundField DataField="IdReader" HeaderText="IdReader" ReadOnly="True" SortExpression="IdReader" />

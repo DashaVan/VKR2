@@ -17,13 +17,23 @@ namespace VKR2
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LendBook?ID=" + 0000000000 + ' ' + 00000000000);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
             if (TextBox1.Text.Length == 10)
             {
                 Int32 gg = Convert.ToInt32(TextBox1.Text);
 
                 string id_reader = (from u in ent.ReaderCard
-                               where u.IdReaderCardRFID == gg
-                               select u).First().IdReader.ToString();
+                                    where u.IdReaderCardRFID == gg
+                                    select u).First().IdReader.ToString();
                 Label_id.Text = id_reader;
 
                 string name = (from u in ent.ReaderCard

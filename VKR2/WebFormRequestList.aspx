@@ -9,7 +9,7 @@
     <style>
         form {
             margin: 0 auto;
-            width: 700px;
+            width: 800px;
         }
  
     </style>
@@ -20,7 +20,7 @@
             <br /> 
             <h2>Каталог заказов книг</h2> 
 
-            <asp:GridView ID="GridView1" runat="server" OnRowCommand="GridView1_RowCommand" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataSourceID="EntityDataSource1" Width="700px">
+            <asp:GridView ID="GridView1" runat="server" OnRowCommand="GridView1_RowCommand" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataSourceID="EntityDataSource1" Width="800px">
                 <Columns>
                     <asp:BoundField DataField="IdRequestList" HeaderText="IdRequestList" ReadOnly="True" SortExpression="IdRequestList" />
                     <asp:BoundField DataField="Date" HeaderText="Date" ReadOnly="True" SortExpression="Date" />
@@ -50,13 +50,16 @@
             <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" Font-Size="20px"></asp:TextBox>
             <br />
             <br />
-            <asp:Table ID="supertable" runat="server" Width="700px" BackColor="#DEBA84" CellPadding="3" HorizontalAlign="Center" Visible="false" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellSpacing="2">
+            <asp:Table ID="supertable" runat="server" Width="800px" BackColor="#DEBA84" CellPadding="3" HorizontalAlign="Center" Visible="false" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellSpacing="2">
                 <asp:TableRow BackColor="#a55129" ForeColor="White" Font-Bold="True">
                             <asp:TableCell>
                                 <asp:Label ID="Label4" runat="server" Text="Имя"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label5" runat="server" Text="Фамилия" ></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label1" runat="server" Text="Отчество" ></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label6" runat="server" Text="Информация о книгах" ></asp:Label>
@@ -74,6 +77,9 @@
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label_surname" runat="server" Text="surname"></asp:Label>
+                            </asp:TableCell>
+                             <asp:TableCell>
+                                <asp:Label ID="Label_patronymic" runat="server" Text="patronymic"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label_infoBook" runat="server" Text="infoBook"></asp:Label>

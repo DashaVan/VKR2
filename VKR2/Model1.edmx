@@ -11,13 +11,14 @@
           </Key>
           <Property Name="IdRFIDbook" Type="int" />
           <Property Name="IdBook" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Autor" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Publish" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="Pages" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Sum" Type="bit" Nullable="false" />
+          <Property Name="Place" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LendBook">
           <Key>
@@ -372,13 +373,14 @@
           </Key>
           <Property Name="IdRFIDbook" Type="Int32" />
           <Property Name="IdBook" Type="Guid" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Autor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Publish" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Pages" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Sum" Type="Boolean" Nullable="false" />
+          <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LendBook" Relationship="DashaVKRModel.FK_LendBook_Book" FromRole="Book" ToRole="LendBook" />
           <NavigationProperty Name="RequestList" Relationship="DashaVKRModel.FK_RequestList_Book1" FromRole="Book" ToRole="RequestList" />
           <NavigationProperty Name="ReturnBook" Relationship="DashaVKRModel.FK_ReturnBook_Book" FromRole="Book" ToRole="ReturnBook" />
@@ -612,6 +614,7 @@
           <EntitySetMapping Name="Book">
             <EntityTypeMapping TypeName="DashaVKRModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Place" ColumnName="Place" />
                 <ScalarProperty Name="Sum" ColumnName="Sum" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Pages" ColumnName="Pages" />

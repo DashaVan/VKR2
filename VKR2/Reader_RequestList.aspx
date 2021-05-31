@@ -9,7 +9,7 @@
     <style> 
     form {
       margin: 0 auto;
-      width: 650px;
+      width: 800px;
     }
         input[type=submit] {
             position: relative;

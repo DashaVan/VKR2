@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4b1a7434c9214a129d18c2499f684308" Name="Diagram1">
-        <EntityTypeShape EntityType="DashaVKRModel.Book" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DashaVKRModel.Book" Width="1.5" PointX="3" PointY="12.875" />
         <EntityTypeShape EntityType="DashaVKRModel.LendBook" Width="1.5" PointX="8.25" PointY="4.875" />
-        <EntityTypeShape EntityType="DashaVKRModel.Librarian" Width="1.5" PointX="6" PointY="9" />
+        <EntityTypeShape EntityType="DashaVKRModel.Librarian" Width="1.5" PointX="3" PointY="9.25" />
         <EntityTypeShape EntityType="DashaVKRModel.Reader" Width="1.5" PointX="0.75" PointY="5.25" />
         <EntityTypeShape EntityType="DashaVKRModel.ReaderCard" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="DashaVKRModel.RequestList" Width="1.5" PointX="5.25" PointY="1.25" />
-        <EntityTypeShape EntityType="DashaVKRModel.ReturnBook" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="DashaVKRModel.RequestList" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="DashaVKRModel.ReturnBook" Width="1.5" PointX="5.25" PointY="0.875" />
         <AssociationConnector Association="DashaVKRModel.FK_LendBook_Book" />
         <AssociationConnector Association="DashaVKRModel.FK_RequestList_Book1" />
         <AssociationConnector Association="DashaVKRModel.FK_ReturnBook_Book" />

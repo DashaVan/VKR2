@@ -30,6 +30,7 @@ namespace VKR2
         public int Pages { get; set; }
         public System.DateTime Date { get; set; }
         public bool Sum { get; set; }
+        public string Place { get; set; }
     
         public virtual ICollection<LendBook> LendBook { get; set; }
         public virtual ICollection<RequestList> RequestList { get; set; }

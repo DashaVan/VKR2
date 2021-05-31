@@ -47,6 +47,7 @@ namespace VKR2
                 }             
                     new_book.Date = System.DateTime.Now.Date;
                     new_book.Sum = true;
+                    new_book.Place = TbPlace.Text.Trim();
                     ent.Book.Add(new_book);
                     ent.SaveChanges();
             }

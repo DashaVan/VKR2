@@ -41,6 +41,11 @@ namespace VKR2
                                select u).First().Reader.Surname.ToString();
                 Label_surname.Text = surname;
 
+                string patronymic = (from u in ent.ReaderCard
+                                  where u.IdReaderCardRFID == gg
+                                  select u).First().Reader.Patronymic.ToString();
+                Label_patronymic.Text = patronymic;
+
                 string infoBook = (from u in ent.ReaderCard
                                   where u.IdReaderCardRFID == gg
                                   select u).First().InfoBook.ToString();

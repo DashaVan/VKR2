@@ -9,7 +9,7 @@
     <style> 
       form {
       margin: 0 auto;
-      width: 567px;
+      width: 800px;
       }
       input[type=text] {
       width: 100%;
@@ -67,6 +67,14 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
+                        <asp:Label ID="Label10" runat="server" Text="Местоположение:" Font-Size="20px"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                       <asp:TextBox ID="TbPlace" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
                         <asp:Label ID="Label8" runat="server" Text="IdRFIDbook:" Font-Size="20px"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
@@ -105,6 +113,7 @@
         <p>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="IdBook" DataSourceID="EntityDataSource1">
                 <Columns>
+                    <asp:BoundField DataField="IdRFIDbook" HeaderText="IdRFIDbook" SortExpression="IdRFIDbook" />
                     <asp:BoundField DataField="IdBook" HeaderText="IdBook" ReadOnly="True" SortExpression="IdBook" />
                     <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                     <asp:BoundField DataField="Autor" HeaderText="Autor" SortExpression="Autor" />
@@ -113,7 +122,7 @@
                     <asp:BoundField DataField="Pages" HeaderText="Pages" SortExpression="Pages" />
                     <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
                     <asp:CheckBoxField DataField="Sum" HeaderText="Sum" SortExpression="Sum" />
-                    <asp:BoundField DataField="IdRFIDbook" HeaderText="IdRFIDbook" SortExpression="IdRFIDbook" />
+                    <asp:BoundField DataField="Place" HeaderText="Place" SortExpression="Place" />
                 </Columns>
                 <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                 <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />

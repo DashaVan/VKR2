@@ -11,6 +11,7 @@
             margin: 0 auto;
             width: 700px;
         }
+        
     </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
          </div>
          <div>
             <asp:Label ID="Label2" runat="server" Text="Номер читательского билета:" Font-Size="20px"></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" Font-Size="20px" Width="250px"></asp:TextBox>
              <br />
              <asp:Button ID="Button2" runat="server" Text="Найти информацию" OnClick="Button2_Click" />
             <br />
@@ -39,6 +40,9 @@
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label5" runat="server" Text="Фамилия" ></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label3" runat="server" Text="Отчество" ></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label6" runat="server" Text="Информация о книгах" ></asp:Label>
@@ -59,6 +63,9 @@
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label_surname" runat="server" Text="surname"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Label ID="Label_patronymic" runat="server" Text="surname"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:Label ID="Label_infoBook" runat="server" Text="infoBook"></asp:Label>
